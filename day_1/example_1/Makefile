@@ -12,5 +12,15 @@
 # the commands we send the shell to build the target.
 #
 example: example.cxx
+	@echo "Compiling example.cxx into ./example"
+#	|
+#      '@' means do not print the command before executing it.
+#       This is super useful for commands like `echo` and internal commands we want to hide.
+#
 	g++ example.cxx -o example
+
+clean:
+	rm example
+
+.PHONY: clean
 
