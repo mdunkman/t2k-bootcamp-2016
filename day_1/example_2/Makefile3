@@ -1,0 +1,59 @@
+#
+# Compile the example
+#
+# vim: set tabstop=8 softtabstop=8 noexpandtab :
+#
+
+# 
+# Define some variables for the makefile.
+# Lower case is used to avoid overwriting environment variables.
+#
+# 1. Define the default c++ compiler
+       cxx = g++
+#
+# 2. Define the flags we want to pass to the c++ compiler
+  cxxflags = -g -Wall $(CXXFLAGS)
+#             |  |
+#             |  Warn about everything
+#             keep debugging symbols in the object files
+#
+# 3. Define the flags we want to pass to the preprocessor
+  cppflags = -D__I_HAVE_THE_POWER__ $(CPPFLAGS)
+#             |
+#            *D*efine a preprocessor variable "__I_HAVE_THE_POWER__"
+#
+# 4. Define the targets and objects to make cleanup easiser
+   objects = hello2.o
+   targets = example
+
+#
+# The .PHONY target tells make that the following targets
+# do not actually create any objects themselves, and should
+# not do any checks on timestamps to determine if they need
+# to be processed.
+#
+.PHONY: all clean
+
+#
+# The default target is 'all'
+# This says that all depends on 'example'.
+#
+all: $(targets)
+
+%.o: %.cxx
+	$(cxx) -c $(cppflags) $(cxxflags) $< -o $@
+
+example: example.cxx $(objects)
+	$(cxx) $(cppflags) $(cxxflags) $^ -o $@
+#                                       |     |
+#                                       |    $@ = name of target
+#                                      $^ = names of _all_ dependencies
+#
+#
+# We like to clean up after ourselves, but it is our
+# responsibility to tell make what needs to be done
+# to put things back to a pre-compiled state.
+#
+clean:
+	$(RM) $(targets) $(objects)
+

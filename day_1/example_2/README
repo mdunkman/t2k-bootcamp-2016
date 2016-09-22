@@ -1,0 +1,21 @@
+Objective: Expand previous example to include dependencies and introduce Makefile variables
+
+Method:
+    Delegate the message to a seperate function, and push it to its own files.
+    C++ concepts:
+        - introduce preprocessor include guards
+        - introduce namespace concept
+        - header vs implementation files
+        - preprocessor macros and conditional inclusion
+    Makefile concepts:
+        (in Makefile)
+        - multiple dependencies
+        - compiling objects vs linking executables
+        (in Makefile2)
+        - user defined variables in Make
+        - automatic variables in Make {$^, $<, $@, $(RM)}
+        (in Makefile3)
+        - target rules '%.o: %.cxx' to automatically convert '*.cxx' into '*.o'
+          -- this allows make to implicitly handle compilation the way you want it
+          -- make actually defines these, but you might want to explicitly list them
+        - Use $(RM) instead of `rm -f`
