@@ -1,0 +1,20 @@
+Objective: Compile a simple exetuable with no dependencies.
+
+Method:
+    Start with command line compile::
+        $ g++ example.cxx -o example
+        $ ./example
+
+    Then write this into a new 'Makefile'::
+        $ vim Makefile
+            :i
+            > example: example.cxx
+            >         g++ example.cxx -o example
+            >
+            <ESC>
+            :wq
+        $ make
+        $ ./example
+
+    They both work!
+
