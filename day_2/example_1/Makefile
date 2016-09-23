@@ -48,7 +48,7 @@ sourcedir = src
 # The default target is 'all'
 # This says that all depends on 'example'.
 #
-all: $(dirs) build install
+all: $(dirs) $(builddir)/$(target) install
 
 $(builddir) :
 	@echo "Making \$$(builddir)..."
@@ -65,9 +65,6 @@ $(libdir) :
 $(incdir) :
 	@echo "Making \$$(incdir)..."
 	@mkdir -p $(incdir)
-
-build: $(builddir)/$(target) $(dirs)
-	@echo "Making build..."
 
 install : $(builddir)/$(target) $(builddir)/$(library) 
 	@echo "Making install..."
