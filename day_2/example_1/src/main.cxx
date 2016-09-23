@@ -10,7 +10,7 @@
 int main()
 {
     std::srand(20160924); // use fixed seed
-    TH1D histogram = bootcamp::make_histogram_5("uniform", "Uniform Random Numbers", 5, 0, 1);
+    TH1D histogram = bootcamp::make_histogram_6("uniform", "Uniform Random Numbers", 5, 0, 1);
     histogram.Print();
     return 0;
 }
